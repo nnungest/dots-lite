@@ -1,0 +1,33 @@
+
+# colorize basic patterns
+default rule "error" --> red match
+default rule "warning" --> yellow match
+default rule "heartbeat" --> green match
+
+# status codes
+default rule /\b2\d\d\b/ --> green match
+default rule /\b4\d\d\b/ --> red line
+default rule /\b3\d\d\b/ --> yellow match
+default rule /\b5\d\d\b/ --> red line
+
+#ip checking 
+default rule /[0-9]{0,3}\.[0-9]{0,3}\.[0-9]{0,3}\.[0-9]{0,3}/ --> black on grey16 match
+
+# other occasions for red
+
+kubectl rule "Evicted" --> red line
+kubectl rule "Running" --> green match
+kubectl rule "Pending" --> yellow match
+kubectl rule "Terminating" --> red line
+kubectl rule "Initializing" --> yellow match
+kubectl rule "ImagePullBackOff" --> magenta match
+kubectl rule "Init" --> yellow match
+kubectl rule "CrashLoopBackOff" --> red on yellow match
+kubectl rule "Error" --> red line
+kubectl rule "Unknown" --> red line
+kubectl rule "<pending>" --> yellow match
+
+jenkins rule "SEVERE" --> red match
+jenkins rule "bad" --> red match
+jenkins rule "WARNING" --> yellow line
+jenkins rule "uncaughtException" --> red line
